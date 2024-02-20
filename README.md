@@ -21,7 +21,7 @@ of engaging in conversations with users both in group and private chats.
 ## Environment
 
 - Python 3.11+ with pip.
-- Windows 10+, Linux or Macos.
+- Windows 10+, Linux or macOS.
 
 ## Configuration
 
