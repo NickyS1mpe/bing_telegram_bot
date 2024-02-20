@@ -21,7 +21,7 @@ prompt
 # Bot statement
 bot_statement = f"*statement*"
 # Bot nickname
-bot_nickname = r'[nickname]'
+bot_nickname = r'[]{}'
 # Bot username
 bot_username = '@username'
 group_user_nickname = ""
@@ -214,11 +214,14 @@ def task():
                 image_url = ''
                 comment = ''
                 update_id = res['update_id']
+                msg_id = res['message']['message_id']
+                chat_id = res['message']['chat']['id']
                 # If data type is photo
                 if 'photo' in res['message'] and 'caption' in res['message']:
                     comment = res['message']['caption']
                     file_id = res['message']['photo'][len(res['message']['photo']) - 1]['file_id']
-                    image_url = telegram_bot_getImage(file_id, update_id)
+                    telegram_bot_getImage(file_id, msg_id)
+                    image_url = f'./image/{msg_id}.jpg'
                 # If data type is text
                 elif 'text' in res['message']:
                     comment = res['message']['text']
@@ -226,8 +229,6 @@ def task():
                 if float(update_id) > float(last_update) and comment != "":
                     if not res['message']['from']['is_bot']:
                         global history_message
-                        msg_id = res['message']['message_id']
-                        chat_id = res['message']['chat']['id']
                         group_name = res['message']['chat']['title'] if 'title' in res['message']['chat'] else \
                             res['message']['chat']['type']
                         user_name = res['message']['from']['first_name']
