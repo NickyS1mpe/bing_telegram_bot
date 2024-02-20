@@ -187,7 +187,6 @@ async def reply(context, chat_id, msg_id, update, image_url):
         logging.error(e)
 
 
-# 程序主函数
 def task():
     # Fetch the current document location
     cwd = os.getcwd()
