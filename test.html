@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Mini App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { background: #fff; color: #000; font-family: sans-serif; text-align: center; padding: 30px; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Hello, <span id="username"></span>!</h1>
+  <button onclick="sendData()">Send Data to Bot</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    document.getElementById("username").textContent = tg.initDataUnsafe.user?.first_name || "Guest";
+
+    function sendData() {
+      tg.sendData("some data from mini app");
+    }
+
+    tg.expand(); 
+  </script>
+</body>
+</html>
